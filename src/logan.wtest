@@ -1,0 +1,33 @@
+import enfermedades.*
+import persona.*
+
+describe "tests de Logan"{
+	
+	var logan = new Persona(36, 3000000)
+	var malaria = new Infecciosa(500)
+	var otitis = new Infecciosa(100)
+	var lupus = new Autoinmune(10000)
+	
+	fixture {
+		logan.enfermedadesQueLoAfectan(#{malaria, otitis, lupus})
+	}
+	
+	test "la malaria de logan se reproduce y tiene 1000 celulas amenazadas" {
+		malaria.reproducirse()
+		assert.equals(1000, malaria.celulasAmenazadas())
+	}
+	
+	test "logan vive un dia y la cantidad de células afectadas de Logan que estén afectadas por
+enfermedades agresivas es 0" {
+		logan.pasarUnDia()
+		var enfermedadesAgresivasDeLogan = logan.enfermedadesAgresivas()
+		assert.equals(0, logan.sumaCelulasAfectadas(enfermedadesAgresivasDeLogan))
+	}
+	
+	test "logan vive un dia y la enfermedad de logan que mas celulas afecta es lupus"{
+		logan.pasarUnDia()
+		assert.equals(lupus, lupus.esLaMasGrave(logan.enfermedadesQueLoAfectan()))
+	}
+	
+	
+}
