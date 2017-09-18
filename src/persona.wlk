@@ -20,14 +20,14 @@ class Persona {
 	}
 	
 	method sumaCelulasAfectadas(listaDeEnfermedades){
-		return listaDeEnfermedades.map{enfermedad => enfermedad.cantidadCelulasAmenazadas()}.sum()
+		return listaDeEnfermedades.map{enfermedad => enfermedad.celulasAmenazadas()}.sum()
 	}
 	
 	method enfermedadesAgresivas(){
 		return enfermedadesQueLoAfectan.filter{enfermedad => enfermedad.esAgresiva(self)}
 	}
 	
-	method enfermedadMasAvanzada(){
+	method enfermedadMasGrave(){
 		return enfermedadesQueLoAfectan.find{enfermedad => enfermedad.esLaMasGrave(enfermedadesQueLoAfectan)}
 	}
 	
@@ -39,7 +39,11 @@ class Persona {
 		return enfermedadesQueLoAfectan
 	}
 	
-	method agregarEnfermedad(enfermedad){
+	method estaEnfermoDe(enfermedad){
+		return enfermedadesQueLoAfectan.contains(enfermedad)
+	}
+	
+	method enfermarse(enfermedad){
 		enfermedadesQueLoAfectan.add(enfermedad)
 	}
 	

@@ -26,8 +26,23 @@ enfermedades agresivas es 0" {
 	
 	test "logan vive un dia y la enfermedad de logan que mas celulas afecta es lupus"{
 		logan.pasarUnDia()
-		assert.equals(lupus, lupus.esLaMasGrave(logan.enfermedadesQueLoAfectan()))
+		assert.equals(lupus, logan.enfermedadMasGrave())
+	}
+		
+	test "logan vive 31 dias y la cantidad de células afectadas de Logan que estén afectadas por
+enfermedades agresivas es 10000 (lupus)" {
+		31.times{
+			logan.pasarUnDia()
+		}
+		var enfermedadesAgresivasDeLogan = logan.enfermedadesAgresivas()
+		assert.equals(10000, logan.sumaCelulasAfectadas(enfermedadesAgresivasDeLogan))
 	}
 	
-	
+	test "logan vive 31 dias y la enfermedad de logan que mas celulas afecta es lupus"{
+		31.times{
+			logan.pasarUnDia()
+		}
+		assert.equals(lupus, logan.enfermedadMasGrave())
+	}
 }
+	

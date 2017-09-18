@@ -6,8 +6,8 @@ describe "tests de frank" {
 	var frank = new Persona(36, 3500000)
 	var malaria = new Infecciosa(800)
 	
-	test "testX" {
-	
-		assert.that(true)
+	test "frank se enfermo de malaria" {
+		frank.enfermarse(malaria)
+		assert.that(frank.estaEnfermoDe(malaria))
 	}
 }

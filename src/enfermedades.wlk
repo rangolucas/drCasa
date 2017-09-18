@@ -20,7 +20,11 @@ class Infecciosa {
 	}
 	
 	method esLaMasGrave(listaDeEnfermedades){
-		return listaDeEnfermedades.all({enfermedad => enfermedad.celulasAmenazadas() < celulasAmenazadas})
+		return listaDeEnfermedades.all({enfermedad => self.esMasGraveQue(enfermedad)})
+	}
+	
+	method esMasGraveQue(enfermedad){
+		return celulasAmenazadas > enfermedad.celulasAmenazadas()
 	}
 	
 	method celulasAmenazadas(){
@@ -47,7 +51,11 @@ class Autoinmune {
 	}
 	
 	method esLaMasGrave(listaDeEnfermedades){
-		return listaDeEnfermedades.all({enfermedad => celulasAmenazadas.max(enfermedad)} == celulasAmenazadas)
+		return listaDeEnfermedades.all({enfermedad => self.esMasGraveQue(enfermedad)})
+	}
+	
+	method esMasGraveQue(enfermedad){
+		return celulasAmenazadas >= enfermedad.celulasAmenazadas()
 	}
 	
 	method celulasAmenazadas(){
